@@ -138,7 +138,7 @@ kable(statsPerDay, digits = 1, align = c("l", "l"),
 |Mean      |9,354.2  |
 |Median    |10,395.0 |
 
-With $\text{Mean} < \text{Median}$ and given the histogram we can see that the raw daily step totals 
+With Mean < Median and given the histogram we can see that the raw daily step totals 
 are slightly skwewed to the left.
 
 ---

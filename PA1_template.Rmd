@@ -115,7 +115,7 @@ kable(statsPerDay, digits = 1, align = c("l", "l"),
       caption = "Steps per Day", format.args = list(decimal.mark = ".", big.mark = ","))
 ```
 
-With $\text{Mean} < \text{Median}$ and given the histogram we can see that the raw daily step totals 
+With Mean < Median and given the histogram we can see that the raw daily step totals 
 are slightly skwewed to the left.
 
 ---
