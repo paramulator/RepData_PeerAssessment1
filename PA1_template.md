@@ -1,11 +1,11 @@
 ---
 title: 'Reproducible Research: Peer Assessment 1'
 output:
-  pdf_document:
-    toc: yes
   html_document:
     keep_md: yes
     theme: cerulean
+    toc: yes
+  pdf_document:
     toc: yes
 ---
 
@@ -114,8 +114,7 @@ ggplot(stepsPerDay) +
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
 Daily step totals are concetrated between 10,000 and 15,000 but there is a tall bar on 
-the far left of the histogram.  This happens because there are 8 days with a  
-step total equal to zero.  Missing values are driving this feature.
+the far left of the histogram.  In particular there are 8 days with a step total equal to zero.  Missing values are driving this feature.
 
 Compute the mean and median steps per day.
 
@@ -147,9 +146,7 @@ are slightly skwewed to the left.
 
 What is the average daily activity pattern?
 
-Re-group the raw data by 5-minute time period and compute the average across all days   
-of the number of steps taken in each period.  Ignore missing values and plot the average step
-counts by time period.
+Re-group the raw data by 5-minute time period and compute the average across all days of the number of steps taken in each period.  Ignore missing values and plot the average step counts by time period.
 
 **Note:** The `interval` variable is a concatenation of hours and minutes stored as an integer
 and is not a proper representation of time. For plotting I chose to convert the original 
@@ -203,8 +200,7 @@ print(numberMissing)
 ##                             2304
 ```
 
-My imputation scheme is to replace each missing value with the average number of steps
-taken for the corresponding day of week and time of day combination.
+My imputation scheme is to replace each missing value with the average number of steps taken for the corresponding day of week and time of day combination.  Copy the raw data and replace the NAs for `interval` with imputed values.   
 
 
 ```r
@@ -214,8 +210,7 @@ impData <- rawData %>% inner_join(meanDayTime, by = c("weekday", "hour"))
 impData$steps[is.na(impData$steps)] <- impData$meanSteps[is.na(impData$steps)] 
 ```
 
-Replace NAs step counts with imputed values.  Plot the distribution of daily step totals
-using the impute-adjusted data.
+Summarize the post-imputation data by day and plot the distribution of daily step totals.
 
 
 ```r
@@ -232,9 +227,7 @@ ggplot(impStepsPerDay) +
 
 ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
 
-After imputation the overall distibution of steps per day has shifted to the right with an
-increased number of days with step counts above 10,000.  The number of days with less than 1,000 steps has been  
-reduced from 10 to 2.
+After imputation the overall distibution of steps per day has shifted to the right with an increased number of days with step counts above 10,000.  The number of days with a zero step count has been reduced from 8 to 0.
 
 The mean and median steps per day after imputation are shown below.
 
